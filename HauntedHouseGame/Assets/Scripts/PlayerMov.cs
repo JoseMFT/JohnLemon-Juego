@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class PlayerMov: MonoBehaviour {
     float horizontal, vertical, charRotation;
-    public float rotSpeed = 80f, movSpeed = 2f;
-    Vector3 movement, orientation;
-    bool isWalking = false;
-
+    public float rotSpeed = 20f;
+    Vector3 movement, desiredAimSpot;
+    Quaternion orientation = Quaternion.identity;
+    bool horizontalInput = false, verticalInput = false, isWalking = false;
+    Rigidbody charRB;
     Animator charAnimator;
-    public Animation animWalking, animIdle;
-    // Start is called before the first frame update
+
     void Start () {
+        charRB = GetComponent<Rigidbody> ();
         charAnimator = GetComponent<Animator> ();
-        if (gameObject.transform.localRotation.y != 90f) {
-            transform.rotation = Quaternion.Euler (0f, 90f, 0f);
-        }
+        /*if (gameObject.transform.localRotation.y != -90f) {
+            transform.rotation = Quaternion.Euler (0f, -90f, 0f);
+        }*/
     }
 
-    // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         horizontal = Input.GetAxis ("Horizontal");
         vertical = Input.GetAxis ("Vertical");
         charRotation += horizontal * Time.deltaTime * rotSpeed;
 
-        if (Input.GetAxis ("Vertical") != 0f) {
-            isWalking = true;
-        } else {
-            isWalking = false;
-        }
-        /*if (isWalking == true &&) {
-            charAnimator.Play = (animWalking, isWalking);
-        }*/
-        orientation = new Vector3 (0f, charRotation, 0f);
-        movement = transform.forward * vertical * movSpeed;
+        horizontalInput = !Mathf.Approximately (horizontal, 0f);
+        verticalInput = !Mathf.Approximately (vertical, 0f);
+        isWalking = horizontalInput || verticalInput;
+
+        movement.Set (-vertical, 0f, horizontal);
         movement.Normalize ();
-        transform.rotation = Quaternion.Euler (orientation);
-        transform.position += movement * Time.deltaTime;
+        charAnimator.SetBool ("IsWalking", isWalking);
+        desiredAimSpot = Vector3.RotateTowards (transform.forward, movement, rotSpeed * Time.deltaTime, 0f);
+        orientation = Quaternion.LookRotation (desiredAimSpot);
+    }
+
+    public void OnAnimatorMove () {
+        charRB.MovePosition (charRB.position + movement * charAnimator.deltaPosition.magnitude);
+        charRB.MoveRotation (orientation);
     }
 }
