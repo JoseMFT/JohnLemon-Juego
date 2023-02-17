@@ -10,13 +10,12 @@ public class PlayerMov: MonoBehaviour {
     bool horizontalInput = false, verticalInput = false, isWalking = false;
     Rigidbody charRB;
     Animator charAnimator;
+    AudioSource footstepsSFX;
 
     void Start () {
         charRB = GetComponent<Rigidbody> ();
         charAnimator = GetComponent<Animator> ();
-        /*if (gameObject.transform.localRotation.y != -90f) {
-            transform.rotation = Quaternion.Euler (0f, -90f, 0f);
-        }*/
+        footstepsSFX = GetComponent<AudioSource> ();
     }
 
     void FixedUpdate () {
@@ -31,6 +30,14 @@ public class PlayerMov: MonoBehaviour {
         movement.Set (-vertical, 0f, horizontal);
         movement.Normalize ();
         charAnimator.SetBool ("IsWalking", isWalking);
+
+        if (isWalking == true) {
+            if (!footstepsSFX.isPlaying) {
+                footstepsSFX.Play ();
+            }
+        } else {
+            footstepsSFX.Stop ();
+        }
         desiredAimSpot = Vector3.RotateTowards (transform.forward, movement, rotSpeed * Time.deltaTime, 0f);
         orientation = Quaternion.LookRotation (desiredAimSpot);
     }
