@@ -27,6 +27,11 @@ public class GameEnding: MonoBehaviour {
         if (other.gameObject == player) {
             playerHitExit = true;
         }
+
+        if (other.gameObject.tag == "Flashlight")
+        {
+
+        }
     }
 
     public void CaughtPlayer () {
