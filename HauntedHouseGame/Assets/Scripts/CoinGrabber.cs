@@ -6,6 +6,7 @@ using TMPro;
 public class CoinGrabber : MonoBehaviour
 {
     int counterText;
+    public AudioSource coinAudio;
     public GameObject prefabCoinExplosion;
     public SettingsAndPrefs settingsAndPrefs;
     public TextMeshProUGUI coinCounter;
@@ -25,10 +26,14 @@ public class CoinGrabber : MonoBehaviour
     {
         if (other.gameObject.tag == "Token")
         {
+            coinAudio = other.gameObject.GetComponent<AudioSource> ();
+            if (!coinAudio.isPlaying) {
+                coinAudio.Play ();
+            }
             settingsAndPrefs.coins++;
             settingsAndPrefs.SavePrefs();
             Instantiate (prefabCoinExplosion, other.gameObject.transform.position, Quaternion.identity);
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, .5f);
         }
     }
 }

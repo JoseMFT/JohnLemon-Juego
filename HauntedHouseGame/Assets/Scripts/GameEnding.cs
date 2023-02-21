@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEnding: MonoBehaviour {
     public float fadeDuration = 1f, displayImageDuration = 1f;
-    public GameObject player;
+    public GameObject player, settingsButton;
     bool playerHitExit = false, playerCaught = false, audioHasPlayed = false;
     float timer = 0f;
     public CanvasGroup exitCanvas, caughtCanvas;
@@ -34,6 +34,7 @@ public class GameEnding: MonoBehaviour {
     }
 
     public void EndLevel (CanvasGroup imageCanvasGroup, bool restartGame, AudioSource audioSource) {
+        settingsButton.SetActive (false);
         if (audioHasPlayed != true) {
             audioSource.Play ();
             audioHasPlayed = true;
@@ -42,7 +43,7 @@ public class GameEnding: MonoBehaviour {
         imageCanvasGroup.alpha = timer / fadeDuration;
         if (timer > fadeDuration + displayImageDuration) {
             if (restartGame == true) {
-                SceneManager.LoadScene (0);
+                SceneManager.LoadScene (1);
             } else {
                 Application.Quit ();
             }

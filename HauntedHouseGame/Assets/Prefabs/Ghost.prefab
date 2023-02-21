@@ -184,7 +184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2595510643693490728}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.335, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 3540391287371809819}
   - component: {fileID: 6986812540457888193}
   - component: {fileID: 8929053300890655643}
+  - component: {fileID: 2182560529535468884}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -674,7 +675,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 3540391287371809819}
-  waypoints: []
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &2182560529535468884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075534488604402034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81405967bde6a324fb8c6e1a0b47e9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasMenu: {fileID: 0}
 --- !u!1 &5863192054190611860
 GameObject:
   m_ObjectHideFlags: 0
