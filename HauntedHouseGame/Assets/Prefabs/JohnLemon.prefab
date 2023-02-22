@@ -872,7 +872,6 @@ GameObject:
   - component: {fileID: 355967702596757054}
   - component: {fileID: 685090927300085920}
   - component: {fileID: 1747932173}
-  - component: {fileID: 1747932185}
   - component: {fileID: 1747932186}
   m_Layer: 0
   m_Name: JohnLemon
@@ -1065,19 +1064,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 20
---- !u!114 &1747932185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6077229646317852079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9e785bfdd074843b62ca1d20079b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coins: 0
 --- !u!114 &1747932186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,9 +1076,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2799217273f95b74eb01e1367f7d4a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinAudio: {fileID: 0}
   prefabCoinExplosion: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd,
     type: 3}
-  settingsAndPrefs: {fileID: 1747932185}
+  settingsAndPrefs: {fileID: 0}
   coinCounter: {fileID: 0}
 --- !u!1 &7028247037451646163
 GameObject:

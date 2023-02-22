@@ -10,11 +10,11 @@ public class CoinGrabber : MonoBehaviour
     public GameObject prefabCoinExplosion;
     public SettingsAndPrefs settingsAndPrefs;
     public TextMeshProUGUI coinCounter;
-    void Start()
-    {
-        
-    }
 
+    void Awake () {
+        //settingsAndPrefs = GameObject.Find ("SettingsAndSaves").GetComponent<SettingsAndPrefs> ();
+    }
+    
     // Update is called once per frame
     void Update()
     {

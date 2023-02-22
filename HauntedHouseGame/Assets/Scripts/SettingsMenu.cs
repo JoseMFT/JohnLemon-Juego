@@ -2,22 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
     public AudioSource ambientSounds;
+    public GraphicRaycaster canvasMenuRaycaster;
     public SettingsAndPrefs settingsAndPrefs;
-    public GameObject settingsCanvasGameObject, settingsButton;
+    public GameObject settingsButton, canvasScore;
     public CanvasGroup settingsCanvasGroup;
     bool execute = false, activeState = false;
     public bool activateCanvas = false, interactable = true;
 
     void Awake () {
+        settingsCanvasGroup = GetComponent<CanvasGroup> ();
         LeanTween.alphaCanvas (settingsCanvasGroup, 0f, 0f);
+        canvasMenuRaycaster = GetComponent<GraphicRaycaster> (); 
+        settingsButton = GameObject.Find ("SettingsButton");
+        if (!AmIOnInitialMenu()) {
+            ambientSounds = GameObject.Find ("Ambient").GetComponent<AudioSource> ();
+            canvasScore = GameObject.Find ("CanvasScore");
+        }
     }
+
     void Update()
     {
-        if (settingsCanvasGameObject.activeSelf == true || settingsButton.activeSelf == true) {
+        if (canvasMenuRaycaster.IsActive () || settingsButton.activeSelf == true) {
             if (Input.GetKeyUp ("escape")) {
                 SettingsActivation ();
             }
@@ -30,25 +40,31 @@ public class SettingsMenu : MonoBehaviour
             activateCanvas = !activateCanvas;
             activeState = !activeState;
 
-            if (activateCanvas) {
-                settingsCanvasGameObject.SetActive (activeState);
-                LeanTween.alphaCanvas (settingsCanvasGroup, 1f, 1f).setEaseOutCubic ().setOnComplete (() => {
-                    Time.timeScale = 0;
+            if (activateCanvas) {                
+                canvasMenuRaycaster.enabled = activeState;
+                if (!AmIOnInitialMenu ()) {                    
+                    canvasScore.SetActive (!activeState);
+                }
+                LeanTween.alphaCanvas (settingsCanvasGroup, 1f, 1f).setEaseOutCubic ().setOnComplete (() => {                    
                     if (!AmIOnInitialMenu ()) {
                         if (ambientSounds.isPlaying) {
                             ambientSounds.Pause ();
+                            Time.timeScale = 0;
                         }
                     }
                     interactable = true;
                 });
 
-            } else if (!activateCanvas) {
-                Time.timeScale = 1;
-                LeanTween.alphaCanvas (settingsCanvasGroup, 0f, 1f).setEaseOutCubic ().setOnComplete (() => {
-                    settingsCanvasGameObject.SetActive (activeState);
+            } else if (!activateCanvas) {                
+                if (!AmIOnInitialMenu()) {
+                    Time.timeScale = 1;
+                    canvasScore.SetActive (!activeState);
+                }                
+                canvasMenuRaycaster.enabled = activeState;
+                LeanTween.alphaCanvas (settingsCanvasGroup, 0f, 1f).setEaseOutCubic ().setOnComplete (() => {                    
                     if (!AmIOnInitialMenu()) {
                         if (!ambientSounds.isPlaying) {
-                            ambientSounds.Play ();
+                            ambientSounds.Play ();                            
                         }
                     }
                     interactable = true;
