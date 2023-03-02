@@ -1,0 +1,8 @@
+Alumno: José María Frías Tejera
+Enlace de gitHub: https://github.com/JoseMFT/JohnLemon-Juego
+
+Entrega: Hecha la modificación sin problemas o bugs aparentes, agregado un sistema de monedas que sin
+influencia alguna en el gameplay más allá de ser un sistema de recompensa al jugador por ponerse en
+riesgo al coger las propias monedas. Las monedas están animadas y hacen ruido y generan partículas al cogerlas.
+Además, se ha agreagado una ventana de inicio (una escena separada);
+

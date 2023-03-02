@@ -352,7 +352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &49751374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9e785bfdd074843b62ca1d20079b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsCanvas: {fileID: 0}
-  volumeController: {fileID: 0}
+  settingsCanvas: {fileID: 8766281770817174438}
+  volumeController: {fileID: 2060587381}
   coins: 0
 --- !u!4 &49751375
 Transform:
@@ -732,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &201176900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9456,6 +9456,18 @@ Transform:
   m_Father: {fileID: 175418214}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060587381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4362615397615291091, guid: 2fd08e05356babb41a1fab2eb467c909,
+    type: 3}
+  m_PrefabInstance: {fileID: 8766281770817174437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2069132975
 GameObject:
   m_ObjectHideFlags: 0
@@ -9743,12 +9755,17 @@ PrefabInstance:
     - target: {fileID: 659839690852267645, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.833
       objectReference: {fileID: 0}
     - target: {fileID: 659839690852267645, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4362615397615291091, guid: 2fd08e05356babb41a1fab2eb467c909,
+        type: 3}
+      propertyPath: m_Value
+      value: 0.833
       objectReference: {fileID: 0}
     - target: {fileID: 5419399786024231472, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
@@ -9860,20 +9877,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5797682064717627382, guid: 2fd08e05356babb41a1fab2eb467c909,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8526204598134732634, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.833
       objectReference: {fileID: 0}
     - target: {fileID: 8526204598134732634, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8526204598134732634, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.833
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fd08e05356babb41a1fab2eb467c909, type: 3}

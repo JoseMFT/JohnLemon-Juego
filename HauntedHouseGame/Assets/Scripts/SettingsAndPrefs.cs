@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SettingsAndPrefs : MonoBehaviour
-{
+public class SettingsAndPrefs: MonoBehaviour {
     public static SettingsAndPrefs Instance;
     public GameObject settingsCanvas;
     public Slider volumeController;
@@ -28,8 +27,8 @@ public class SettingsAndPrefs : MonoBehaviour
 
     void FixedUpdate () {
 
-        if (settingsCanvas != null) {  
-            AudioListener.volume = volumeController.value;           
+        if (settingsCanvas != null) {
+            AudioListener.volume = volumeController.value;
         }
         gameVolume = AudioListener.volume;
 
@@ -40,11 +39,10 @@ public class SettingsAndPrefs : MonoBehaviour
     }
 
 
-    public void SavePrefs()
-    {
-        PlayerPrefs.SetFloat ("gameVolume", 0f);
-        PlayerPrefs.SetInt("coins", 0);
-        PlayerPrefs.Save();
+    public void SavePrefs () {
+        PlayerPrefs.SetFloat ("gameVolume", 1f);
+        PlayerPrefs.SetInt ("coins", 0);
+        PlayerPrefs.Save ();
     }
 
     public bool AmIOnInitialMenu () {
