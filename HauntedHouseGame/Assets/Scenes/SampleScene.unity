@@ -352,7 +352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &49751374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9882,6 +9882,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7635614511876110512, guid: 2fd08e05356babb41a1fab2eb467c909,
+        type: 3}
+      propertyPath: canvasScore
+      value: 
+      objectReference: {fileID: 1157130325}
+    - target: {fileID: 7635614511876110512, guid: 2fd08e05356babb41a1fab2eb467c909,
+        type: 3}
+      propertyPath: ambientSounds
+      value: 
+      objectReference: {fileID: 27389336}
+    - target: {fileID: 7635614511876110512, guid: 2fd08e05356babb41a1fab2eb467c909,
+        type: 3}
+      propertyPath: settingsButton
+      value: 
+      objectReference: {fileID: 201176899}
+    - target: {fileID: 7635614511876110512, guid: 2fd08e05356babb41a1fab2eb467c909,
+        type: 3}
+      propertyPath: settingsAndPrefs
+      value: 
+      objectReference: {fileID: 49751374}
     - target: {fileID: 8526204598134732634, guid: 2fd08e05356babb41a1fab2eb467c909,
         type: 3}
       propertyPath: m_AnchorMax.x

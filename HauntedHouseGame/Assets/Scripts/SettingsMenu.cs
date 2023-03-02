@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
-{
+public class SettingsMenu: MonoBehaviour {
     public AudioSource ambientSounds;
     public GraphicRaycaster canvasMenuRaycaster;
     public SettingsAndPrefs settingsAndPrefs;
@@ -17,16 +16,15 @@ public class SettingsMenu : MonoBehaviour
     void Awake () {
         settingsCanvasGroup = GetComponent<CanvasGroup> ();
         LeanTween.alphaCanvas (settingsCanvasGroup, 0f, 0f);
-        canvasMenuRaycaster = GetComponent<GraphicRaycaster> (); 
+        canvasMenuRaycaster = GetComponent<GraphicRaycaster> ();
         settingsButton = GameObject.Find ("SettingsButton");
-        if (!AmIOnInitialMenu()) {
+        if (!AmIOnInitialMenu ()) {
             ambientSounds = GameObject.Find ("Ambient").GetComponent<AudioSource> ();
             canvasScore = GameObject.Find ("CanvasScore");
         }
     }
 
-    void Update()
-    {
+    void Update () {
         if (canvasMenuRaycaster.IsActive () || settingsButton.activeSelf == true) {
             if (Input.GetKeyUp ("escape")) {
                 SettingsActivation ();
@@ -40,12 +38,12 @@ public class SettingsMenu : MonoBehaviour
             activateCanvas = !activateCanvas;
             activeState = !activeState;
 
-            if (activateCanvas) {                
+            if (activateCanvas) {
                 canvasMenuRaycaster.enabled = activeState;
-                if (!AmIOnInitialMenu ()) {                    
+                if (!AmIOnInitialMenu ()) {
                     canvasScore.SetActive (!activeState);
                 }
-                LeanTween.alphaCanvas (settingsCanvasGroup, 1f, 1f).setEaseOutCubic ().setOnComplete (() => {                    
+                LeanTween.alphaCanvas (settingsCanvasGroup, 1f, 1f).setEaseOutCubic ().setOnComplete (() => {
                     if (!AmIOnInitialMenu ()) {
                         if (ambientSounds.isPlaying) {
                             ambientSounds.Pause ();
@@ -55,16 +53,16 @@ public class SettingsMenu : MonoBehaviour
                     interactable = true;
                 });
 
-            } else if (!activateCanvas) {                
-                if (!AmIOnInitialMenu()) {
+            } else if (!activateCanvas) {
+                if (!AmIOnInitialMenu ()) {
                     Time.timeScale = 1;
                     canvasScore.SetActive (!activeState);
-                }                
+                }
                 canvasMenuRaycaster.enabled = activeState;
-                LeanTween.alphaCanvas (settingsCanvasGroup, 0f, 1f).setEaseOutCubic ().setOnComplete (() => {                    
-                    if (!AmIOnInitialMenu()) {
+                LeanTween.alphaCanvas (settingsCanvasGroup, 0f, 1f).setEaseOutCubic ().setOnComplete (() => {
+                    if (!AmIOnInitialMenu ()) {
                         if (!ambientSounds.isPlaying) {
-                            ambientSounds.Play ();                            
+                            ambientSounds.Play ();
                         }
                     }
                     interactable = true;
@@ -76,7 +74,7 @@ public class SettingsMenu : MonoBehaviour
     public bool AmIOnInitialMenu () {
         bool x;
 
-        if (SceneManager.GetActiveScene().name == "InitialScene") {
+        if (SceneManager.GetActiveScene ().name == "InitialScene") {
             x = true;
         } else {
             x = false;

@@ -18,8 +18,8 @@ public class SettingsAndPrefs: MonoBehaviour {
         }
         Instance = this;
         DontDestroyOnLoad (gameObject);
-        settingsCanvas = GameObject.Find ("MenuCanvas");
-        volumeController = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
+        DontDestroyOnLoad (settingsCanvas);
+        DontDestroyOnLoad (volumeController);
     }
     void Start () {
         LoadPrefs ();
@@ -28,9 +28,9 @@ public class SettingsAndPrefs: MonoBehaviour {
     void FixedUpdate () {
 
         if (settingsCanvas != null) {
+            gameVolume = volumeController.value;
             AudioListener.volume = volumeController.value;
         }
-        gameVolume = AudioListener.volume;
 
         if (gameVolume != prevGameVolume) {
             SavePrefs ();
@@ -57,7 +57,7 @@ public class SettingsAndPrefs: MonoBehaviour {
     }
 
     public void LoadPrefs () {
-        PlayerPrefs.GetFloat ("gameVolume", AudioListener.volume);
+        PlayerPrefs.GetFloat ("gameVolume", 1f);
         AudioListener.volume = gameVolume;
         volumeController.value = gameVolume;
         prevGameVolume = gameVolume;
