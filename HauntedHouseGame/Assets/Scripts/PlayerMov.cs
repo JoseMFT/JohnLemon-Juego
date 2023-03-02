@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMov: MonoBehaviour {
     float horizontal, vertical, charRotation;
     public float rotSpeed = 20f;
     Vector3 movement, desiredAimSpot;
+    Vector2 inputMovement;
     Quaternion orientation = Quaternion.identity;
     bool horizontalInput = false, verticalInput = false, isWalking = false;
     Rigidbody charRB;
@@ -19,16 +21,14 @@ public class PlayerMov: MonoBehaviour {
     }
 
     void FixedUpdate () {
-        horizontal = Input.GetAxis ("Horizontal");
-        vertical = Input.GetAxis ("Vertical");
+        horizontal = inputMovement.x;
+        vertical = inputMovement.y;
         charRotation += horizontal * Time.deltaTime * rotSpeed;
 
         horizontalInput = !Mathf.Approximately (horizontal, 0f);
         verticalInput = !Mathf.Approximately (vertical, 0f);
         isWalking = horizontalInput || verticalInput;
 
-        movement.Set (-vertical, 0f, horizontal);
-        movement.Normalize ();
         charAnimator.SetBool ("IsWalking", isWalking);
 
         if (isWalking == true) {
@@ -45,5 +45,12 @@ public class PlayerMov: MonoBehaviour {
     public void OnAnimatorMove () {
         charRB.MovePosition (charRB.position + movement * charAnimator.deltaPosition.magnitude);
         charRB.MoveRotation (orientation);
+    }
+
+    public void OnMovement (InputAction.CallbackContext value) {
+        inputMovement = value.ReadValue<Vector2> ();
+        //   Debug.Log (inputMovement);
+        movement.Set (-inputMovement.y, 0f, inputMovement.x);
+        movement.Normalize ();
     }
 }

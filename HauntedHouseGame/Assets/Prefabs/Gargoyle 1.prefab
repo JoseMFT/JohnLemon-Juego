@@ -546,5 +546,6 @@ MonoBehaviour:
   exclamationPlaying: 0
   exclamation: {fileID: 5049827571710772319}
   canvasMenu: {fileID: 0}
+  joystick: {fileID: 0}
   otherSounds: {fileID: 0}
   exclamationSFX: {fileID: 9149959195826877780}

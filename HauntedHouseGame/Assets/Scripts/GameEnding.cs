@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEnding: MonoBehaviour {
     public float fadeDuration = 1f, displayImageDuration = 1f;
-    public GameObject player, settingsButton;
+    public GameObject player, settingsButton, joyStick;
     bool playerHitExit = false, playerCaught = false, audioHasPlayed = false;
     float timer = 0f;
     public CanvasGroup exitCanvas, caughtCanvas;
@@ -35,6 +35,7 @@ public class GameEnding: MonoBehaviour {
 
     public void EndLevel (CanvasGroup imageCanvasGroup, bool restartGame, AudioSource audioSource) {
         settingsButton.SetActive (false);
+        joyStick.SetActive (false);
         if (audioHasPlayed != true) {
             audioSource.Play ();
             audioHasPlayed = true;

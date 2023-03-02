@@ -7,16 +7,20 @@ public class Observer: MonoBehaviour {
     public Transform playerTransform;
     public GameEnding gameEnding;
     public bool playerInRange = false, exclamationPlaying = false;
-    public GameObject exclamation, canvasMenu;
+    public GameObject exclamation, canvasMenu, joystick;
     Vector3 direction;
     public AudioSource otherSounds, exclamationSFX;
     bool prevCanvasState = false, currentCanvasState = false;
     void Start () {
         canvasMenu = GameObject.Find ("MenuCanvas");
+        joystick = GameObject.Find ("JoyStick");
     }
 
     // Update is called once per frame
     void Update () {
+        /*if (joystick.activeSelf == canvasMenu.activeSelf) {
+            joystick.SetActive (!canvasMenu.activeSelf);
+        }*/
         if (exclamationSFX.isPlaying) {
             exclamationPlaying = true;
         } else {
